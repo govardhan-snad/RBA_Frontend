@@ -1,0 +1,310 @@
+bootstrap
+<div class="container" >
+  <div class="row">
+    <form name="Personal" #Personal="ngForm" (ngSubmit)="Personal.valid && personal(Personal)">
+      <div class="tab-content pt-2" id="myTabContent">
+        <div class="tab-pane fade show active" id="Personal" role="tabpanel" aria-labelledby="home-tab">
+          <link rel="stylesheet" type="text/css"
+            href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+          <section class="vh-200 gradient-custom">
+
+
+            <div class="card-body col-lg-12 col-md-12 col-sm-8" >
+
+              <h5 class="mb-4 pb-2 pb-md-0 mb-md-3">Basic Information</h5>
+              <div class="fixTableHead">
+
+                <div class="row">
+
+                  <div class="col" *ngIf="true">
+                    <label class="form-label" for="EmployeeId">Employee
+                      Id</label><span>*</span>
+                    <input type="text" class="form-control" placeholder="id" name="employeeId" aria-label="employeeId"
+                      #employeeId="ngModel" [(ngModel)]="empdata.employeeId" required disabled="false" />
+                    <small
+                      *ngIf="(employeeId.touched && employeeId.invalid) || (employeeId.invalid && Personal.submitted)">Employee
+                      Id
+                      is required </small>
+                  </div>
+
+
+                  <div class="col-2">
+                    <label class="form-label">Status*</label>
+                    <input type="text" class="form-control" placeholder="" name="empstatus" aria-label="empstatus"
+                      #empstatus="ngModel" [(ngModel)]="empdata.empstatus" required />
+                    <small
+                      *ngIf="(empstatus.touched && empstatus.invalid) || (empstatus.invalid && Personal.submitted)">Status
+                      is required</small>
+                  </div>
+
+                  <div class="col-2">
+                    <label class="form-label">Gender*</label>
+                    <input type="text" class="form-control" placeholder="" name="gender" aria-label="gender"
+                      #gender="ngModel" [(ngModel)]="empdata.gender" required />
+                    <small
+                      *ngIf="( gender.touched &&  gender.invalid) || ( gender.invalid && Personal.submitted)">Gender
+                      is required </small>
+                  </div>
+                  <div class="col-2">
+                    <label class="form-label">Title*</label>
+                    <input type="text" class="form-control" placeholder="title" name="title" aria-label="title"
+                      #title="ngModel" [(ngModel)]="empdata.title" required />
+                    <small *ngIf="(title.touched && title.invalid) || (title.invalid && Personal.submitted)">Title
+                      is required </small>
+                  </div>
+                  <br>
+                  <div class="col" *ngIf="permissions['firstname'].read">
+                    <label class="form-label" for="FirstName">First
+                      Name</label><span>*</span>
+                    <input type="text" class="form-control" placeholder="firstName" name="firstName"
+                      aria-label="firstName" #firstName="ngModel" [(ngModel)]="empdata.firstName" required [disabled]="!permissions['firstname'].write" />
+                    <small
+                      *ngIf="(firstName.touched && firstName.invalid) || (firstName.invalid && Personal.submitted)">First
+                      Name
+                      is required </small>
+                  </div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+
+
+                  <div class="col" *ngIf="permissions['lastname'].read">
+                    <label class="form-label" for="LastName">Last
+                      Name</label><span>*</span>
+                    <input type="text" class="form-control" placeholder="lastName" name="lastName"
+                      aria-label="Last Name" #lastName="ngModel" [(ngModel)]="empdata.lastName" required  [disabled]="!permissions['lastname'].write"/>
+                    <small
+                      *ngIf="(lastName.touched && lastName.invalid) || (lastName.invalid && Personal.submitted)">Last
+                      Name is required </small>
+                  </div>
+
+                  <div class="col">
+                    <label for="dob" class="form-label">Date Of
+                      Birth*</label>
+                    <input class="form-control" id="dob" name="dob" #dob="ngModel" [(ngModel)]="empdata.dob" required />
+                    <small *ngIf="(dob.touched && dob.invalid) || (dob.invalid && Personal.submitted)">Date
+                      Of Birth is required </small>
+
+                  </div>
+                  <div class="col">
+                    <label class="form-label">Marital Status*</label>
+                    <input class="form-control" id="maritalStatus" name="maritalStatus" #maritalStatus="ngModel"
+                      [(ngModel)]="empdata.maritalStatus" required />
+                    <small
+                      *ngIf="( maritalStatus.touched &&  maritalStatus.invalid) || ( maritalStatus.invalid && Personal.submitted)">Marital
+                      Status
+                      is required </small>
+
+                  </div>
+
+                  <div class="col">
+                    <label class="form-label">Secondary Language*</label>
+                    <input class="form-control" id="secondaryLanguage" name="secondaryLanguage"
+                      #secondaryLanguage="ngModel" [(ngModel)]="empdata.secondaryLanguage" required />
+                    <small
+                      *ngIf="(  secondaryLanguage.touched &&   secondaryLanguage.invalid) || (  secondaryLanguage.invalid && Personal.submitted)">
+                      Secondary Language
+                      is required </small>
+
+                  </div>
+                </div>
+                <br>
+
+
+
+
+                <div class="row">
+
+                  <div class="col">
+                    <label class="form-label" for="National Id/SSN/Aadhar No">National
+                      Id/SSN/Aadhar No</label><span>*</span>
+                    <input type="text" class="form-control" placeholder="nationalId" name="nationalId"
+                      aria-label="nationalId" #nationalId="ngModel" [(ngModel)]="empdata.nationalId" required />
+                    <small
+                      *ngIf="(nationalId.touched && nationalId.invalid) || (nationalId.invalid && Personal.submitted)">National
+                      Id/SSN/Aadhar No
+                      is
+                      required </small>
+                  </div>
+
+
+                  <div class="col">
+                    <label class="form-label" for="taxFileNumber">Tax File
+                      Number/PAN/NIN</label><span>*</span>
+                    <input type="text" min="0" class="form-control" placeholder="246880" name="taxFileNumber"
+                      aria-label="taxFileNumber" #taxFileNumber="ngModel" [(ngModel)]="empdata.taxFileNumber"
+                      required />
+                    <small
+                      *ngIf="(taxFileNumber.touched && taxFileNumber.invalid) || (taxFileNumber.invalid && Personal.submitted)">Tax
+                      File Number is required </small>
+                  </div>
+
+
+
+                </div>
+
+                <hr>
+
+                <h5 class="mb-4 pb-2 pb-md-0 mb-md-3">Address</h5>
+                <div class="fixTableHead">
+
+
+                  <div class="form-group">
+                    <label for="#Address1">Address Line 1</label><span>*</span>
+                    <input type="text" class="form-control" id=" addressLine1" placeholder=" address Line 1"
+                      name=" addressLine1" aria-label="# addressLine1" #addressLine1="ngModel"
+                      [(ngModel)]="empdata. addressLine1" required />
+                    <small
+                      *ngIf="( addressLine1.touched &&  addressLine1.invalid) || ( addressLine1.invalid && Personal.submitted)">
+                      Address Line 1 is required </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="Address2">Address Line 2</label><span>*</span>
+                    <input type="text" class="form-control" id="addressLine2" placeholder="address Line 2"
+                      name="addressLine2" aria-label="#addressLine2" #addressLine2="ngModel"
+                      [(ngModel)]="empdata.addressLine2" required />
+                    <small
+                      *ngIf="(addressLine2.touched && addressLine2.invalid) || (addressLine2.invalid && Personal.submitted)">
+                      Address Line 2 is required </small>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="CITY1">City</label><span>*</span>
+                      <input type="text" class="form-control" id="city" name="city" aria-label="city" #city="ngModel"
+                        [(ngModel)]="empdata.city" required />
+                      <small *ngIf="(city.touched && city.invalid) || (city.invalid && Personal.submitted)">
+                        City is required </small>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="state">State</label><span>*</span>
+                      <input type="text" class="form-control" #state="ngModel" id="state" name="state"
+                        [(ngModel)]="empdata.state" required>
+                      <small *ngIf="(state.touched && state.invalid) || (state.invalid && Personal.submitted)">State
+                        is required </small>
+                    </div>
+                    <div class="col-2">
+                      <label class="form-label">Country*</label>
+                      <input type="text" class="form-control" #country="ngModel" id="country" name="country"
+                        [(ngModel)]="empdata.country" required>
+                      <small
+                        *ngIf="(country.touched && country.invalid) || (country.invalid && Personal.submitted)">Country
+                        is required </small>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="zipcode">Zip Code/Post code</label><span>*</span>
+                      <input type="text" name=" zipCode" class="form-control" placeholder=" zipCode"
+                        aria-label=" zipCode" #zipCode="ngModel" [(ngModel)]="empdata. zipCode" minlength="2"
+                        maxlength="6" pattern="[0-9]*" required />
+                      <small
+                        *ngIf="( zipCode.touched &&  zipCode .invalid) || ( zipCode.invalid && Personal.submitted)">Zip
+                        Code is required </small>
+                    </div>
+                  </div>
+
+                </div>
+
+                <hr>
+                <h5 class="mb-4 pb-2 pb-md-0 mb-md-3">Contact Details</h5>
+                <div class="row">
+
+                  <div class="col" >
+                    <label class="form-label" for="contactnumber">Work Phone
+                      Number</label><span>*</span>
+                    <input type="tel" class="form-control" name="workPhone" aria-label="contactnumber"
+                      pattern="[0-9]{10}" #workPhone="ngModel" [(ngModel)]="empdata.workPhone" required  />
+                    <small
+                      *ngIf="(workPhone.touched && workPhone.invalid) || (workPhone.invalid && Personal.submitted)">
+                      Work Phone Number is required </small>
+                  </div>
+
+                  <div class="col" *ngIf="permissions['mobile'].read">
+                    <label class="form-label" for="contactnumber">Mobile
+                      Number</label><span>*</span>
+                    <input type="tel" class="form-control" name="mobilePhone" aria-label="contactnumber"
+                      pattern="[0-9]{10}" #mobilePhone="ngModel" [(ngModel)]="empdata.mobilePhone" required  [disabled]="!permissions['mobile'].write"/>
+                    <small
+                      *ngIf="(mobilePhone.touched && mobilePhone.invalid) || (mobilePhone.invalid && Personal.submitted)">
+                      Mobile Phone number is required </small>
+                  </div>
+
+                  <div class="col">
+                    <label class="form-label" for="emailaddress">Work
+                      Mail-Id</label><span>*</span>
+                    <input type="text" class="form-control" name="workEmail" aria-label="emailaddress"
+                      pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #workEmail="ngModel"
+                      [(ngModel)]="empdata.workEmail" required />
+                    <small
+                      *ngIf="(workEmail.touched && workEmail.invalid) || (workEmail.invalid && Personal.submitted)">Work
+                      Email-Id
+                      is required </small>
+                  </div>
+
+                  <div class="col">
+                    <label class="form-label" for="emailaddress">Home
+                      Mail-Id</label><span>*</span>
+                    <input type="text" class="form-control" name="homeEmail" aria-label="emailaddress"
+                      pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #homeEmail="ngModel"
+                      [(ngModel)]="empdata.homeEmail" required />
+                    <small
+                      *ngIf="(homeEmail.touched && homeEmail.invalid) || (homeEmail.invalid && Personal.submitted)">Home
+                      Email-Id
+                      is required </small>
+                  </div>
+                </div>
+                <hr>
+                <br>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="container">
+  <form>
+    <label>
+      Name:
+      <input type="text" [(ngModel)]="userGroup.name">
+    </label>
+    <br>
+    <label>
+      Description:
+      <input type="text" [(ngModel)]="userGroup.description">
+    </label>
+    <br>
+    <div *ngFor="let user of userGroup.users; let i = index">
+      <label>
+        User ID:
+        <input type="number" [(ngModel)]="userGroup.users[i].id">
+      </label>
+    </div>
+    <button type="button" (click)="addUser()">Add User</button>
+    <br>
+    <div *ngFor="let permission of userGroup.permissions; let i = index">
+      <label>
+        Field:
+        <input type="text" [(ngModel)]="userGroup.permissions[i].field">
+      </label>
+      <label>
+        Read:
+        <input type="checkbox" [(ngModel)]="userGroup.permissions[i].read">
+      </label>
+      <label>
+        Write:
+        <input type="checkbox" [(ngModel)]="userGroup.permissions[i].write">
+      </label>
+      <button type="button" (click)="removePermission(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addPermission()">Add Permission</button>
+    <br>
+    <button type="submit" (click)="submitForm()">Submit</button>
+  </form>
+
+
+</div>

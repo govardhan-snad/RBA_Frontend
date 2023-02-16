@@ -2,15 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
-import { HttpService } from './services/http.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-approach-one',
+  templateUrl: './approach-one.component.html',
+  styleUrls: ['./approach-one.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'RBA_Frontend';
+export class ApproachOneComponent {
   empdata = {} as any;
   permissions = {} as any;
   subscription!: Subscription;
