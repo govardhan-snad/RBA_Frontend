@@ -15,27 +15,30 @@
 <select id="users" multiple [(ngModel)]="selectedUsers">
   <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
 </select>
+<div *ngFor="let section of sections">
+  <h2>{{section.name}}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Access</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let field of section.fields">
+        <td>{{ field }}</td>
+        <td>
+          <select [(ngModel)]="accessLevels[field]">
+            <option value="none">No Access</option>
+            <option value="view">View</option>
+            <option value="edit">Edit</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Access</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let field of fields">
-      <td>{{ field }}</td>
-      <td>
-        <select [(ngModel)]="accessLevels[field]">
-          <option value="none">No Access</option>
-          <option value="view">View</option>
-          <option value="edit">Edit</option>
-        </select>
-      </td>
-    </tr>
-  </tbody>
-</table>
+</div>
 
 <button (click)="submit()">Submit</button>
 <!-- </form> -->

@@ -35,13 +35,6 @@ export class ApproachOneComponent {
 
   ngOnInit(): void {
     this.getGroupPermissions();
-    console.log(this.permissions.lastname.write);
-    this.userGroup = {
-      name: '',
-      description: '',
-      users: [{ id: null }],
-      permissions: [{ field: '', read: false, write: false }],
-    };
 
     // const permissions = [
     //   {
@@ -77,7 +70,7 @@ export class ApproachOneComponent {
   personal(f: NgForm) {}
 
   getGroupPermissions() {
-    this.subscription = this.http.getData('usergroups/1').subscribe({
+    this.subscription = this.http.getData('usergroups/6').subscribe({
       next: (data: any) => {
         console.log(data);
         this.permissions = data.permissions.reduce(
@@ -97,7 +90,9 @@ export class ApproachOneComponent {
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
 

@@ -16,11 +16,11 @@ bootstrap
 
                 <div class="row">
 
-                  <div class="col" *ngIf="true">
+                  <div class="col" *ngIf="permissions['empid'].read">
                     <label class="form-label" for="EmployeeId">Employee
                       Id</label><span>*</span>
                     <input type="text" class="form-control" placeholder="id" name="employeeId" aria-label="employeeId"
-                      #employeeId="ngModel" [(ngModel)]="empdata.employeeId" required disabled="false" />
+                      #employeeId="ngModel" [(ngModel)]="empdata.employeeId" required [disabled]="!permissions['empid'].write" />
                     <small
                       *ngIf="(employeeId.touched && employeeId.invalid) || (employeeId.invalid && Personal.submitted)">Employee
                       Id
@@ -28,27 +28,27 @@ bootstrap
                   </div>
 
 
-                  <div class="col-2">
+                  <div class="col-2" *ngIf="permissions['status'].read">
                     <label class="form-label">Status*</label>
                     <input type="text" class="form-control" placeholder="" name="empstatus" aria-label="empstatus"
-                      #empstatus="ngModel" [(ngModel)]="empdata.empstatus" required />
+                      #empstatus="ngModel" [(ngModel)]="empdata.empstatus" required  [disabled]="!permissions['status'].write"/>
                     <small
                       *ngIf="(empstatus.touched && empstatus.invalid) || (empstatus.invalid && Personal.submitted)">Status
                       is required</small>
                   </div>
 
-                  <div class="col-2">
+                  <div class="col-2" *ngIf="permissions['gender'].read">
                     <label class="form-label">Gender*</label>
                     <input type="text" class="form-control" placeholder="" name="gender" aria-label="gender"
-                      #gender="ngModel" [(ngModel)]="empdata.gender" required />
+                      #gender="ngModel" [(ngModel)]="empdata.gender" required [disabled]="!permissions['gender'].write" />
                     <small
                       *ngIf="( gender.touched &&  gender.invalid) || ( gender.invalid && Personal.submitted)">Gender
                       is required </small>
                   </div>
-                  <div class="col-2">
+                  <div class="col-2" *ngIf="permissions['title'].read">
                     <label class="form-label">Title*</label>
                     <input type="text" class="form-control" placeholder="title" name="title" aria-label="title"
-                      #title="ngModel" [(ngModel)]="empdata.title" required />
+                      #title="ngModel" [(ngModel)]="empdata.title" required [disabled]="!permissions['title'].write" />
                     <small *ngIf="(title.touched && title.invalid) || (title.invalid && Personal.submitted)">Title
                       is required </small>
                   </div>
@@ -81,18 +81,18 @@ bootstrap
                       Name is required </small>
                   </div>
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['dob'].read">
                     <label for="dob" class="form-label">Date Of
                       Birth*</label>
-                    <input class="form-control" id="dob" name="dob" #dob="ngModel" [(ngModel)]="empdata.dob" required />
+                    <input class="form-control" id="dob" name="dob" #dob="ngModel" [(ngModel)]="empdata.dob" required [disabled]="!permissions['dob'].write" />
                     <small *ngIf="(dob.touched && dob.invalid) || (dob.invalid && Personal.submitted)">Date
                       Of Birth is required </small>
 
-                  </div>
-                  <div class="col">
+                  </div >
+                  <div class="col" *ngIf="permissions['marital'].read">
                     <label class="form-label">Marital Status*</label>
                     <input class="form-control" id="maritalStatus" name="maritalStatus" #maritalStatus="ngModel"
-                      [(ngModel)]="empdata.maritalStatus" required />
+                      [(ngModel)]="empdata.maritalStatus" required [disabled]="!permissions['marital'].write" />
                     <small
                       *ngIf="( maritalStatus.touched &&  maritalStatus.invalid) || ( maritalStatus.invalid && Personal.submitted)">Marital
                       Status
@@ -100,10 +100,10 @@ bootstrap
 
                   </div>
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['seclan'].read">
                     <label class="form-label">Secondary Language*</label>
                     <input class="form-control" id="secondaryLanguage" name="secondaryLanguage"
-                      #secondaryLanguage="ngModel" [(ngModel)]="empdata.secondaryLanguage" required />
+                      #secondaryLanguage="ngModel" [(ngModel)]="empdata.secondaryLanguage" required [disabled]="!permissions['seclan'].write" />
                     <small
                       *ngIf="(  secondaryLanguage.touched &&   secondaryLanguage.invalid) || (  secondaryLanguage.invalid && Personal.submitted)">
                       Secondary Language
@@ -118,11 +118,11 @@ bootstrap
 
                 <div class="row">
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['ssn'].read">
                     <label class="form-label" for="National Id/SSN/Aadhar No">National
                       Id/SSN/Aadhar No</label><span>*</span>
                     <input type="text" class="form-control" placeholder="nationalId" name="nationalId"
-                      aria-label="nationalId" #nationalId="ngModel" [(ngModel)]="empdata.nationalId" required />
+                      aria-label="nationalId" #nationalId="ngModel" [(ngModel)]="empdata.nationalId" required [disabled]="!permissions['ssn'].write"/>
                     <small
                       *ngIf="(nationalId.touched && nationalId.invalid) || (nationalId.invalid && Personal.submitted)">National
                       Id/SSN/Aadhar No
@@ -131,12 +131,12 @@ bootstrap
                   </div>
 
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['pan'].read">
                     <label class="form-label" for="taxFileNumber">Tax File
                       Number/PAN/NIN</label><span>*</span>
                     <input type="text" min="0" class="form-control" placeholder="246880" name="taxFileNumber"
                       aria-label="taxFileNumber" #taxFileNumber="ngModel" [(ngModel)]="empdata.taxFileNumber"
-                      required />
+                      required [disabled]="!permissions['pan'].write" />
                     <small
                       *ngIf="(taxFileNumber.touched && taxFileNumber.invalid) || (taxFileNumber.invalid && Personal.submitted)">Tax
                       File Number is required </small>
@@ -152,52 +152,52 @@ bootstrap
                 <div class="fixTableHead">
 
 
-                  <div class="form-group">
+                  <div class="form-group" *ngIf="permissions['line1'].read">
                     <label for="#Address1">Address Line 1</label><span>*</span>
                     <input type="text" class="form-control" id=" addressLine1" placeholder=" address Line 1"
                       name=" addressLine1" aria-label="# addressLine1" #addressLine1="ngModel"
-                      [(ngModel)]="empdata. addressLine1" required />
+                      [(ngModel)]="empdata. addressLine1" required [disabled]="!permissions['line1'].write"/>
                     <small
                       *ngIf="( addressLine1.touched &&  addressLine1.invalid) || ( addressLine1.invalid && Personal.submitted)">
                       Address Line 1 is required </small>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" *ngIf="permissions['line2'].read">
                     <label for="Address2">Address Line 2</label><span>*</span>
                     <input type="text" class="form-control" id="addressLine2" placeholder="address Line 2"
                       name="addressLine2" aria-label="#addressLine2" #addressLine2="ngModel"
-                      [(ngModel)]="empdata.addressLine2" required />
+                      [(ngModel)]="empdata.addressLine2" required [disabled]="!permissions['line2'].write" />
                     <small
                       *ngIf="(addressLine2.touched && addressLine2.invalid) || (addressLine2.invalid && Personal.submitted)">
                       Address Line 2 is required </small>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4" *ngIf="permissions['city'].read">
                       <label for="CITY1">City</label><span>*</span>
                       <input type="text" class="form-control" id="city" name="city" aria-label="city" #city="ngModel"
-                        [(ngModel)]="empdata.city" required />
+                        [(ngModel)]="empdata.city" required  [disabled]="!permissions['city'].write"/>
                       <small *ngIf="(city.touched && city.invalid) || (city.invalid && Personal.submitted)">
                         City is required </small>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4" *ngIf="permissions['state'].read">
                       <label for="state">State</label><span>*</span>
                       <input type="text" class="form-control" #state="ngModel" id="state" name="state"
-                        [(ngModel)]="empdata.state" required>
+                        [(ngModel)]="empdata.state" required [disabled]="!permissions['state'].write">
                       <small *ngIf="(state.touched && state.invalid) || (state.invalid && Personal.submitted)">State
                         is required </small>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" *ngIf="permissions['country'].read">
                       <label class="form-label">Country*</label>
                       <input type="text" class="form-control" #country="ngModel" id="country" name="country"
-                        [(ngModel)]="empdata.country" required>
+                        [(ngModel)]="empdata.country" required [disabled]="!permissions['country'].write">
                       <small
                         *ngIf="(country.touched && country.invalid) || (country.invalid && Personal.submitted)">Country
                         is required </small>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-2" *ngIf="permissions['postcode'].read">
                       <label for="zipcode">Zip Code/Post code</label><span>*</span>
                       <input type="text" name=" zipCode" class="form-control" placeholder=" zipCode"
                         aria-label=" zipCode" #zipCode="ngModel" [(ngModel)]="empdata. zipCode" minlength="2"
-                        maxlength="6" pattern="[0-9]*" required />
+                        maxlength="6" pattern="[0-9]*" required [disabled]="!permissions['postcode'].write"/>
                       <small
                         *ngIf="( zipCode.touched &&  zipCode .invalid) || ( zipCode.invalid && Personal.submitted)">Zip
                         Code is required </small>
@@ -210,44 +210,44 @@ bootstrap
                 <h5 class="mb-4 pb-2 pb-md-0 mb-md-3">Contact Details</h5>
                 <div class="row">
 
-                  <div class="col" >
+                  <div class="col" *ngIf="permissions['workphone'].read" >
                     <label class="form-label" for="contactnumber">Work Phone
                       Number</label><span>*</span>
                     <input type="tel" class="form-control" name="workPhone" aria-label="contactnumber"
-                      pattern="[0-9]{10}" #workPhone="ngModel" [(ngModel)]="empdata.workPhone" required  />
+                      pattern="[0-9]{10}" #workPhone="ngModel" [(ngModel)]="empdata.workPhone" required [disabled]="!permissions['workphone'].write" />
                     <small
                       *ngIf="(workPhone.touched && workPhone.invalid) || (workPhone.invalid && Personal.submitted)">
                       Work Phone Number is required </small>
                   </div>
 
-                  <div class="col" *ngIf="permissions['mobile'].read">
+                  <div class="col" *ngIf="permissions['homephone'].read">
                     <label class="form-label" for="contactnumber">Mobile
                       Number</label><span>*</span>
                     <input type="tel" class="form-control" name="mobilePhone" aria-label="contactnumber"
-                      pattern="[0-9]{10}" #mobilePhone="ngModel" [(ngModel)]="empdata.mobilePhone" required  [disabled]="!permissions['mobile'].write"/>
+                      pattern="[0-9]{10}" #mobilePhone="ngModel" [(ngModel)]="empdata.mobilePhone" required  [disabled]="!permissions['homephone'].write"/>
                     <small
                       *ngIf="(mobilePhone.touched && mobilePhone.invalid) || (mobilePhone.invalid && Personal.submitted)">
                       Mobile Phone number is required </small>
                   </div>
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['workmail'].read">
                     <label class="form-label" for="emailaddress">Work
                       Mail-Id</label><span>*</span>
                     <input type="text" class="form-control" name="workEmail" aria-label="emailaddress"
                       pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #workEmail="ngModel"
-                      [(ngModel)]="empdata.workEmail" required />
+                      [(ngModel)]="empdata.workEmail" required [disabled]="!permissions['workmail'].write"/>
                     <small
                       *ngIf="(workEmail.touched && workEmail.invalid) || (workEmail.invalid && Personal.submitted)">Work
                       Email-Id
                       is required </small>
                   </div>
 
-                  <div class="col">
+                  <div class="col" *ngIf="permissions['homemail'].read">
                     <label class="form-label" for="emailaddress">Home
                       Mail-Id</label><span>*</span>
                     <input type="text" class="form-control" name="homeEmail" aria-label="emailaddress"
                       pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #homeEmail="ngModel"
-                      [(ngModel)]="empdata.homeEmail" required />
+                      [(ngModel)]="empdata.homeEmail" required [disabled]="!permissions['homemail'].write"/>
                     <small
                       *ngIf="(homeEmail.touched && homeEmail.invalid) || (homeEmail.invalid && Personal.submitted)">Home
                       Email-Id
